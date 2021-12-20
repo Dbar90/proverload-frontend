@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 
+
 const baseUrl = process.env.REACT_APP_BASEURL
 
 export default class Lifts extends Component {
@@ -13,8 +14,8 @@ export default class Lifts extends Component {
   }
 
 
-  getLifts = (lifts) => {
-    fetch(baseUrl + '/api/v1/lifts/workouts/')
+  getLifts = (id) => {
+    fetch(baseUrl + '/api/v1/lifts/workouts/' + id)
     .then(res => {
       if(res.status === 200) {
         return res.json()
@@ -29,7 +30,7 @@ export default class Lifts extends Component {
   }
 
   componentDidMount() {
-    this.getLifts()
+    this.getLifts(this.props.workout_id)
   }
 
 

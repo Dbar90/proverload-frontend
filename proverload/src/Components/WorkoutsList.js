@@ -1,7 +1,6 @@
 import React, {Component} from 'react'
 import Workout from './WorkoutCard'
 import AddWorkout from './AddWorkout'
-import Lifts from './LiftsList'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
 
@@ -42,6 +41,7 @@ export default class Workouts extends Component {
   }
 
   deleteWorkout = (id) => {
+    console.log(id)
     fetch(baseUrl + '/api/v1/workouts/' + id, {
       method: 'DELETE'
     })
@@ -69,15 +69,14 @@ export default class Workouts extends Component {
         <div>
           {this.state.workouts.map((workout, i) => {
             return (
-            <Workout
-              key={i}
-              name={workout.name}
-              workout={workout}
-              workouts={this.state.workouts}
-              baseUrl={baseUrl}
-              deleteWorkout={this.deleteWorkout}
-            />
-          )
+              <Workout
+                key={workout.id}
+                name={workout.name}
+                workout={workout}
+                baseUrl={baseUrl}
+                deleteWorkout={this.deleteWorkout}
+              />
+            )
           })}
         </div>
       </div>

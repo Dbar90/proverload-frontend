@@ -7,6 +7,7 @@ export default class Workout extends Component {
   constructor(props){
     super(props)
     this.state = {
+      lifts: [],
       name: ""
     }
   }
@@ -14,15 +15,14 @@ export default class Workout extends Component {
 
 
 
-
   render() {
     return (
-      <Card key={this.props.i} style={{ width: '18rem' }}>
+      <Card key={this.props.id} style={{ width: '18rem' }}>
         <Card.Body>
           <Card.Title>Workout: {this.props.name}</Card.Title>
           <Card.Link href="#">View Workout</Card.Link>
-          <Lifts workout={workout._id} />
-          <Card.Link href="#" onClick={() => this.props.deleteWorkout(this.props.workout._id)}>Remove Workout</Card.Link>
+          <Lifts workout_id={this.props.workout.id}/>
+          <Card.Link href="#" onClick={() => this.props.deleteWorkout(this.props.workout.id)}>Remove Workout</Card.Link>
         </Card.Body>
       </Card>
     )
