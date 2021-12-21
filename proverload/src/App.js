@@ -12,9 +12,7 @@ function App() {
   return (
     <div className="App">
     <h1> Progressive Overload </h1>
-      <br/>
       <Workouts />
-
     </div>
   );
 }

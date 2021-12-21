@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import {Button, Table} from 'react-bootstrap'
 
 
 const baseUrl = process.env.REACT_APP_BASEURL
@@ -9,6 +10,12 @@ export default class Lifts extends Component {
     this.state = {
       lifts: [],
       name: '',
+      // startWeight: '',
+      // currentWeight: '',
+      // sets: '',
+      // reps: '',
+      // personalBest: '',
+      // notes: ''
 
     }
   }
@@ -37,7 +44,21 @@ export default class Lifts extends Component {
 
   render() {
     return(
-      <></>
+    <Table striped bordered hover size="dark">
+      <tbody>
+       {this.state.lifts.map((lift, i) => {
+         return (
+           <tr key={lift.id}>
+            <td> {lift.name} </td>
+            <td><Button variant="outline-light">View/Edit</Button></td>
+            <td><Button variant="outline-light">Delete</Button></td>
+           </tr>
+          )
+        }
+      )
+    }
+      </tbody>
+    </Table>
     )
   }
 }

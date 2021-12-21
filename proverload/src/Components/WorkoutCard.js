@@ -1,30 +1,23 @@
-import React, {Component} from 'react'
-import {Card} from 'react-bootstrap'
+import React, {useState} from 'react'
+import {Card, Button} from 'react-bootstrap'
 import Lifts from './LiftsList'
 
 
-export default class Workout extends Component {
-  constructor(props){
-    super(props)
-    this.state = {
-      lifts: [],
-      name: ""
-    }
-  }
 
+const Workout = (props) => {
+  const [isToggled, setIsToggled] = useState(false)
 
-
-
-  render() {
-    return (
-      <Card key={this.props.id} style={{ width: '18rem' }}>
-        <Card.Body>
-          <Card.Title>Workout: {this.props.name}</Card.Title>
-          <Card.Link href="#">View Workout</Card.Link>
-          <Lifts workout_id={this.props.workout.id}/>
-          <Card.Link href="#" onClick={() => this.props.deleteWorkout(this.props.workout.id)}>Remove Workout</Card.Link>
-        </Card.Body>
-      </Card>
-    )
-  }
+  return (
+    <Card key={props.id} style={{ width: '25rem' }}>
+      <Card.Body>
+        <Card.Title>Workout: {props.name}</Card.Title>
+        {isToggled && <Lifts workout_id={props.workout.id}/>}
+        <Button onClick={() => setIsToggled(!isToggled)} variant="dark">View Workout</Button>
+        <Button variant="dark"  onClick={() => props.deleteWorkout(props.workout.id)}>Remove Workout</Button>
+      </Card.Body>
+    </Card>
+  )
 }
+
+
+export default Workout

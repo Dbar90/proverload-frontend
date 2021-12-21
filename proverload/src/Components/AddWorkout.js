@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import {Button} from 'react-bootstrap'
+import {Form} from 'react-bootstrap'
 
 
 
@@ -44,10 +45,10 @@ export default class AddWorkout extends Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
+      <Form.Group controlId="formBasicEmail" className="mb-3" onSubmit={this.handleSubmit}>
         <input placeholder='Add Workout here' type="text" id="name" name="name" onChange={this.handleChange} value={this.state.name} />
-        <Button type='submit' variant="outline-success">Add Workout</Button>
-      </form>
+        <Button type='submit' variant="dark">Add Workout</Button>
+      </Form.Group>
     )
   }
 }

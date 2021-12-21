@@ -65,8 +65,7 @@ export default class Workouts extends Component {
     return(
       <div>
         <div><AddWorkout baseUrl={baseUrl} addWorkout={this.addWorkout}/></div>
-        <br/>
-        <div>
+        <div className="card-container">
           {this.state.workouts.map((workout, i) => {
             return (
               <Workout
@@ -77,7 +76,9 @@ export default class Workouts extends Component {
                 deleteWorkout={this.deleteWorkout}
               />
             )
-          })}
+          }
+        )
+      }
         </div>
       </div>
     )
