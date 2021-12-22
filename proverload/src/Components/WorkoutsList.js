@@ -46,7 +46,7 @@ export default class Workouts extends Component {
       method: 'DELETE'
     })
     .then(res => {
-      const findIndex = this.state.workouts.findIndex(workout => workout._id === id)
+      const findIndex = this.state.workouts.findIndex(workout => workout.id === id)
       const copyWorkouts = [...this.state.workouts]
       console.log(findIndex)
       copyWorkouts.splice(findIndex, 1)

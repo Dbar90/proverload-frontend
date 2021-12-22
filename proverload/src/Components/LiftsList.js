@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
-import {Button, Table} from 'react-bootstrap'
-
+import {Table} from 'react-bootstrap'
+import Lift from './LiftCard'
+import AddLift from './AddLift'
 
 const baseUrl = process.env.REACT_APP_BASEURL
 
@@ -10,13 +11,12 @@ export default class Lifts extends Component {
     this.state = {
       lifts: [],
       name: '',
-      // startWeight: '',
-      // currentWeight: '',
-      // sets: '',
-      // reps: '',
-      // personalBest: '',
-      // notes: ''
-
+      startWeight: '',
+      currentWeight: '',
+      sets: '',
+      reps: '',
+      personalBest: '',
+      notes: ''
     }
   }
 
@@ -36,6 +36,14 @@ export default class Lifts extends Component {
     })
   }
 
+  addLift = (newLift) => {
+    const copyLifts = [...this.state.lifts]
+    copyLifts.push(newLift)
+    this.setState({
+      lifts: copyLifts
+    })
+  }
+
   componentDidMount() {
     this.getLifts(this.props.workout_id)
   }
@@ -44,21 +52,22 @@ export default class Lifts extends Component {
 
   render() {
     return(
+      <div>
     <Table striped bordered hover size="dark">
       <tbody>
        {this.state.lifts.map((lift, i) => {
          return (
-           <tr key={lift.id}>
-            <td> {lift.name} </td>
-            <td><Button variant="outline-light">View/Edit</Button></td>
-            <td><Button variant="outline-light">Delete</Button></td>
-           </tr>
+          <Lift
+            key={lift.id}
+            name={lift.name}
+            />
+              )
+            }
           )
         }
-      )
-    }
       </tbody>
     </Table>
+     <AddLift addLift={this.addLift} workout_id={this.props.workout_id}/> </div>
     )
   }
 }

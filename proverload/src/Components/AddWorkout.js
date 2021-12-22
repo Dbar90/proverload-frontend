@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
-import {Button} from 'react-bootstrap'
-import {Form} from 'react-bootstrap'
+import {Button, Form} from 'react-bootstrap'
+
 
 
 
@@ -13,9 +13,9 @@ export default class AddWorkout extends Component {
     }
   }
 
-  handleChange = (e) => {
+  handleChange = (event) => {
     this.setState({
-      name: e.target.value
+      name: event.target.value
     })
   }
 
@@ -38,17 +38,17 @@ export default class AddWorkout extends Component {
         name: ''
       })
     })
-    .catch (error => console.error({'Error': error}))
+    .catch(error => console.error({'Error': error}))
   }
 
 
 
   render() {
     return (
-      <Form.Group controlId="formBasicEmail" className="mb-3" onSubmit={this.handleSubmit}>
+      <Form  onSubmit={this.handleSubmit}>
         <input placeholder='Add Workout here' type="text" id="name" name="name" onChange={this.handleChange} value={this.state.name} />
         <Button type='submit' variant="dark">Add Workout</Button>
-      </Form.Group>
+      </Form>
     )
   }
 }
