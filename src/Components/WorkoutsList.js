@@ -45,8 +45,7 @@ export default class Workouts extends Component {
   deleteWorkout = (id) => {
     console.log(id)
     fetch(baseUrl + '/api/v1/workouts/' + id, {
-      method: 'DELETE',
-      credentials: 'include'
+      method: 'DELETE'
     })
     .then(res => {
       const findIndex = this.state.workouts.findIndex(workout => workout.id === id)
