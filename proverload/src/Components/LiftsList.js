@@ -1,7 +1,8 @@
 import React, {Component} from 'react'
 import {Table} from 'react-bootstrap'
 import Lift from './LiftCard'
-import AddLift from './AddLift'
+import LiftButton from './AddLiftButton'
+
 
 const baseUrl = process.env.REACT_APP_BASEURL
 
@@ -44,6 +45,38 @@ export default class Lifts extends Component {
     })
   }
 
+  deleteLift = (id) => {
+    fetch(baseUrl + '/api/v1/lifts/' + id, {
+      method: 'DELETE'
+    })
+    .then(res => {
+      const findIndex = this.state.lifts.findIndex(lift => lift.id === id)
+      const copyLifts = [...this.state.lifts]
+      copyLifts.splice(findIndex, 1)
+      this.setState({
+        lifts: copyLifts
+      })
+    })
+  }
+
+
+  updateLift = (updatedLift) => {
+    const copyLifts = [...this.state.lifts]
+    const findIndex = this.state.lifts.findIndex(lift => lift.id === updatedLift.id)
+    copyLifts[findIndex].name = updatedLift.name
+    copyLifts[findIndex].start_weight = updatedLift.start_weight
+    copyLifts[findIndex].current_weight = updatedLift.current_weight
+    copyLifts[findIndex].sets = updatedLift.sets
+    copyLifts[findIndex].reps = updatedLift.reps
+    copyLifts[findIndex].personal_best = updatedLift.personal_best
+    copyLifts[findIndex].notes = updatedLift.notes
+    copyLifts[findIndex].workout_id = updatedLift.workout_id
+    this.setState({
+      lifts: copyLifts
+    })
+  }
+
+
   componentDidMount() {
     this.getLifts(this.props.workout_id)
   }
@@ -60,6 +93,9 @@ export default class Lifts extends Component {
           <Lift
             key={lift.id}
             name={lift.name}
+            lift={lift}
+            deleteLift={this.deleteLift}
+            updateLift={this.updateLift}
             />
               )
             }
@@ -67,7 +103,9 @@ export default class Lifts extends Component {
         }
       </tbody>
     </Table>
-     <AddLift addLift={this.addLift} workout_id={this.props.workout_id}/> </div>
+
+    <LiftButton addLift={this.addLift} workout_id={this.props.workout_id}/>
+      </div>
     )
   }
 }

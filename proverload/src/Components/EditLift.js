@@ -3,17 +3,17 @@ import {Form, Button} from 'react-bootstrap'
 
 const baseUrl = process.env.REACT_APP_BASEURL
 
-export default class AddLift extends Component {
+export default class EditLift extends Component {
   constructor(props){
     super(props)
     this.state = {
-      name: '',
-      start_weight: '',
-      current_weight: '',
-      sets: '',
-      reps: '',
-      personal_best: '',
-      notes: '',
+      name: props.lift.name,
+      start_weight: props.lift.start_weight,
+      current_weight: props.lift.current_weight,
+      sets: props.lift.sets,
+      reps: props.lift.reps,
+      personal_best: props.lift.personal_best,
+      notes: props.lift.notes,
       workout_id: this.props.workout_id
     }
   }
@@ -64,10 +64,9 @@ export default class AddLift extends Component {
 
 
 
-  handleSubmit = (event) => {
-    event.preventDefault()
-    fetch(baseUrl + '/api/v1/lifts/', {
-      method: 'POST',
+  handleSubmit = () => {
+    fetch(baseUrl + '/api/v1/lifts/' + this.props.lift.id, {
+      method: 'PUT',
       body: JSON.stringify({
         name: this.state.name,
         start_weight: this.state.start_weight,
@@ -86,18 +85,7 @@ export default class AddLift extends Component {
       return res.json()
     })
     .then(data => {
-      const workout_id = this.props.workout_id
-      this.props.addLift(data.data)
-      this.setState({
-        name: '',
-        start_weight: '',
-        current_weight: '',
-        sets: '',
-        reps: '',
-        personal_best: '',
-        notes: '',
-        workout_id: workout_id
-      })
+      this.props.updateLift(data.data)
     })
     .catch(error => console.error({'Error': error}))
   }
@@ -105,65 +93,75 @@ export default class AddLift extends Component {
 
   render() {
     return(
-      <Form onSubmit={this.handleSubmit} workout_id={this.props.workout_id}>
-        <Form.Group className='mb-3 lift'>
+      <>
+        <td>
           <Form.Label>Lift Name</Form.Label>
           <Form.Control
             type='text'
-            onChange={this.handleName}
+            id='name'
+            name='name'
+            onChange={(e) => this.handleName(e)}
             value={this.state.name}
             />
-        </Form.Group>
-        <Form.Group className='mb-3 lift'>
+        </td>
+        <td>
           <Form.Label>Starting Weight</Form.Label>
           <Form.Control
             type='text'
             onChange={this.handleStartWeight}
             value={this.state.start_weight}
             />
-        </Form.Group>
-        <Form.Group className='mb-3 lift'>
+        </td>
+        <td>
           <Form.Label>Current Weight</Form.Label>
           <Form.Control
             type='text'
             onChange={this.handleCurrentWeight}
             value={this.state.current_weight}
             />
-        </Form.Group>
-        <Form.Group className='mb-3 lift'>
+        </td>
+        <td>
           <Form.Label>Sets</Form.Label>
           <Form.Control
             type='text'
             onChange={this.handleSets}
             value={this.state.sets}
             />
-        </Form.Group>
-        <Form.Group className='mb-3 lift'>
+        </td>
+        <td>
           <Form.Label>Reps</Form.Label>
           <Form.Control
             type='text'
             onChange={this.handleReps}
             value={this.state.reps}
             />
-        </Form.Group>
-        <Form.Group className='mb-3 lift'>
+        </td>
+        <td>
           <Form.Label>Personal Best</Form.Label>
           <Form.Control
             type='text'
             onChange={this.handlePersonalBest}
             value={this.state.personal_best}
             />
-        </Form.Group>
-        <Form.Group className='mb-3 lift'>
+        </td>
+        <td>
           <Form.Label>Notes</Form.Label>
           <Form.Control
             type='text'
             onChange={this.handleNotes}
             value={this.state.notes}
             />
-        </Form.Group>
-        <Button variant='dark' type='submit'>Add Lift</Button>
-      </Form>
+        </td>
+        <td>
+        <Button variant='dark'
+        onClick={this.handleSubmit}
+        type='submit'
+        value='Update'
+        >
+        Update Lift
+        </Button>
+        </td>
+      </>
     )
   }
 }
