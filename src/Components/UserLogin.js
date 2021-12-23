@@ -38,8 +38,7 @@ export default class Login extends Component {
         }),
         headers: {
           'Content-Type': 'application/json',
-        },
-        credentials: 'include',
+        }
       })
       if (response.status === 200) {
         this.setState({
