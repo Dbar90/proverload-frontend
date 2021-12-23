@@ -23,6 +23,10 @@ const Lift = (props) => {
       {!isInEditMode && (
         <>
         <td> {props.name} </td>
+        <td> {props.start_weight} lbs.</td>
+        <td> {props.current_weight} lbs.</td>
+        <td> {props.sets} Sets</td>
+        <td> {props.reps} Reps</td>
         </>
         )}
       {isInEditMode && (

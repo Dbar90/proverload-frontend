@@ -27,7 +27,8 @@ export default class AddWorkout extends Component {
       body: JSON.stringify({name: this.state.name}),
       headers: {
         'Content-Type': 'application/json'
-      }
+      },
+      credentials: 'include',
     })
     .then( res => {
       return res.json()
@@ -46,7 +47,13 @@ export default class AddWorkout extends Component {
   render() {
     return (
       <Form  onSubmit={this.handleSubmit}>
-        <input placeholder='Add Workout here' type="text" id="name" name="name" onChange={this.handleChange} value={this.state.name} />
+        <input placeholder='Add Workout here'
+        type="text"
+        id="name"
+        name="name"
+        onChange={this.handleChange}
+        value={this.state.name}
+        />
         <Button type='submit' variant="dark">Add Workout</Button>
       </Form>
     )

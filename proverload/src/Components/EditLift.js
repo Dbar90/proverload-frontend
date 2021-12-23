@@ -153,12 +153,12 @@ export default class EditLift extends Component {
             />
         </td>
         <td>
-        <Button variant='dark'
+        <Button variant="outline-light"
         onClick={this.handleSubmit}
         type='submit'
         value='Update'
         >
-        Update Lift
+        Update
         </Button>
         </td>
       </>

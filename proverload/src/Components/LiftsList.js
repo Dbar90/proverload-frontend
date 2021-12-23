@@ -86,13 +86,28 @@ export default class Lifts extends Component {
   render() {
     return(
       <div>
-    <Table striped bordered hover size="dark">
+    <Table striped bordered hover variant="dark">
+      <tbody>
+        <tr className='bold'>
+          <td>Lift</td>
+          <td>Start Weight</td>
+          <td>Current Weight</td>
+          <td>Sets</td>
+          <td>Reps</td>
+          <td></td>
+          <td></td>
+        </tr>
+      </tbody>
       <tbody>
        {this.state.lifts.map((lift, i) => {
          return (
           <Lift
             key={lift.id}
             name={lift.name}
+            start_weight={lift.start_weight}
+            current_weight={lift.current_weight}
+            sets={lift.sets}
+            reps={lift.reps}
             lift={lift}
             deleteLift={this.deleteLift}
             updateLift={this.updateLift}

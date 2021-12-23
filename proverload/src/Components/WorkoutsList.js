@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import Workout from './WorkoutCard'
 import AddWorkout from './AddWorkout'
-import 'bootstrap/dist/css/bootstrap.min.css'
+import {Container} from 'react-bootstrap'
 
 
 const baseUrl = process.env.REACT_APP_BASEURL
@@ -16,7 +16,9 @@ export default class Workouts extends Component {
   }
 
   getWorkouts = (workouts) => {
-    fetch(baseUrl + '/api/v1/workouts/')
+    fetch(baseUrl + '/api/v1/workouts/', {
+      credentials: 'include'
+    })
     .then(res => {
       if(res.status === 200) {
         return res.json()
@@ -65,7 +67,8 @@ export default class Workouts extends Component {
     return(
       <div>
         <div><AddWorkout baseUrl={baseUrl} addWorkout={this.addWorkout}/></div>
-        <div className="card-container">
+        <br />
+        <Container>
           {this.state.workouts.map((workout, i) => {
             return (
               <Workout
@@ -79,7 +82,7 @@ export default class Workouts extends Component {
           }
         )
       }
-        </div>
+        </Container>
       </div>
     )
   }
