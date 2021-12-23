@@ -15,7 +15,6 @@ const App = () => {
 
   const logOut = () => {
     fetch(baseUrl + '/api/v1/users/logout', {
-      credentials: 'include',
       method: 'GET'
     })
     .then(res => {

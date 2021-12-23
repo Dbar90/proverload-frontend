@@ -16,9 +16,7 @@ export default class Workouts extends Component {
   }
 
   getWorkouts = (workouts) => {
-    fetch(baseUrl + '/api/v1/workouts/', {
-      credentials: 'include'
-    })
+    fetch(baseUrl + '/api/v1/workouts/')
     .then(res => {
       if(res.status === 200) {
         return res.json()

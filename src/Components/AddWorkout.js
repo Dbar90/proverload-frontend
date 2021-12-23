@@ -28,7 +28,7 @@ export default class AddWorkout extends Component {
       headers: {
         'Content-Type': 'application/json'
       },
-      credentials: 'include',
+      credentials: 'include'
     })
     .then( res => {
       return res.json()
