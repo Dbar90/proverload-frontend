@@ -45,3 +45,17 @@ td {
 th {
   width: 100%
 }
+
+.workoutlist {
+  
+}
+
+body {
+  background-image: linear-gradient(
+      rgba(255, 255, 255, 0.66),
+      rgba(255, 255, 255, 0.66)
+    );
+  background-size: cover;
+  max-width: 100%;
+  background-color: black;
+}

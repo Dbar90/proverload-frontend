@@ -1,5 +1,5 @@
 import './App.css';
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Workouts from './Components/WorkoutsList';
 import Login from './Components/UserLogin'
@@ -29,7 +29,7 @@ const App = () => {
   return (
     <div className="App">
     <Navbar bg="transparent" variant="transparent">
-       <Navbar.Brand href="#home">
+       <Navbar.Brand>
          <h1>Progressive Overload</h1>
        </Navbar.Brand>
        <Navbar.Toggle />

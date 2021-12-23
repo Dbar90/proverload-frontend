@@ -68,7 +68,7 @@ export default class Workouts extends Component {
       <div>
         <div><AddWorkout baseUrl={baseUrl} addWorkout={this.addWorkout}/></div>
         <br />
-        <Container>
+        <Container className='workoutlist'>
           {this.state.workouts.map((workout, i) => {
             return (
               <Workout
