@@ -79,7 +79,8 @@ export default class EditLift extends Component {
       }),
       headers: {
         'Content-Type': 'application/json'
-      }
+      },
+      credentials: 'include'
     })
     .then(res => {
       return res.json()

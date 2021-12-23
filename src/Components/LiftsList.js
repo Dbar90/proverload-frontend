@@ -23,7 +23,9 @@ export default class Lifts extends Component {
 
 
   getLifts = (id) => {
-    fetch(baseUrl + '/api/v1/lifts/workouts/' + id)
+    fetch(baseUrl + '/api/v1/lifts/workouts/' + id, {
+      credentials: 'include'
+    })
     .then(res => {
       if(res.status === 200) {
         return res.json()
@@ -47,7 +49,8 @@ export default class Lifts extends Component {
 
   deleteLift = (id) => {
     fetch(baseUrl + '/api/v1/lifts/' + id, {
-      method: 'DELETE'
+      method: 'DELETE',
+      credentials: 'include'
     })
     .then(res => {
       const findIndex = this.state.lifts.findIndex(lift => lift.id === id)
